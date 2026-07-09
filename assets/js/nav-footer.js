@@ -20,7 +20,7 @@
       '<header class="site-header">' +
         '<div class="site-header__inner">' +
           '<a class="brand" href="index.html">' +
-            '<div class="crest crest--sm"><span>LB</span></div>' +
+            '<img class="logo logo--nav" src="assets/images/nhs-logo.png" alt="National Honor Society logo">' +
             '<div class="brand__word">' +
               '<span class="brand__name">Laney NHS</span>' +
               '<span class="brand__sub">Buccaneer Chapter</span>' +
@@ -38,7 +38,7 @@
         '<div class="site-footer__grid">' +
           '<div>' +
             '<div class="site-footer__brand-row">' +
-              '<div class="crest crest--xs"><span>LB</span></div>' +
+              '<img class="logo logo--footer" src="assets/images/nhs-logo.png" alt="National Honor Society logo">' +
               '<span class="site-footer__brand-name">Laney NHS</span>' +
             '</div>' +
             '<p class="site-footer__blurb">Buccaneer Chapter of the National Honor Society, recognizing scholarship, service, leadership, and character.</p>' +
