@@ -44,13 +44,20 @@
             '<p class="site-footer__blurb">Buccaneer Chapter of the National Honor Society, recognizing scholarship, service, leadership, and character.</p>' +
           '</div>' +
           '<div>' +
-            '<div class="site-footer__heading">Quick Links</div>' +
+            '<div class="site-footer__heading">Resources</div>' +
             '<div class="site-footer__links">' +
               '<a href="index.html">Home</a>' +
               '<a href="about.html">About</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
               '<a href="membership.html">Membership</a>' +
               '<a href="contact.html">Contact</a>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="site-footer__heading">Quick Links</div>' +
+            '<div class="site-footer__links">' +
+              '<a href="https://docs.google.com/document/d/1cUx2-V5nQm0JadVQ_3Qz4kexI_a5m37xxIAc1M7Jhzw/edit?tab=t.nqt0bi9y2y2f" target="_blank" rel="noopener noreferrer">Pre-Approval Form</a>' +
+              '<a href="https://www.instagram.com/laneynhs/" target="_blank" rel="noopener noreferrer">Instagram</a>' +
             '</div>' +
           '</div>' +
           '<div>' +
