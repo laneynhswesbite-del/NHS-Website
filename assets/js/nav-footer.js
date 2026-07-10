@@ -7,6 +7,7 @@
     { key: 'about', label: 'About', href: 'about.html' },
     { key: 'volunteer', label: 'Volunteer', href: 'volunteer.html' },
     { key: 'membership', label: 'Membership', href: 'membership.html' },
+    { key: 'meetings', label: 'Meetings', href: 'meetings.html' },
     { key: 'contact', label: 'Contact', href: 'contact.html' },
   ];
 
@@ -26,7 +27,10 @@
               '<span class="brand__sub">Buccaneer Chapter</span>' +
             '</div>' +
           '</a>' +
-          '<nav class="nav-links">' + links + '</nav>' +
+          '<button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>' +
+          '</button>' +
+          '<nav class="nav-links" id="nav-links">' + links + '</nav>' +
         '</div>' +
       '</header>'
     );
@@ -50,6 +54,7 @@
               '<a href="about.html">About</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
               '<a href="membership.html">Membership</a>' +
+              '<a href="meetings.html">Meetings</a>' +
               '<a href="contact.html">Contact</a>' +
             '</div>' +
           '</div>' +
@@ -79,5 +84,26 @@
     var footerMount = document.getElementById('site-footer');
     if (headerMount) headerMount.outerHTML = renderHeader(active);
     if (footerMount) footerMount.outerHTML = renderFooter();
+
+    var toggle = document.getElementById('nav-toggle');
+    var navLinks = document.getElementById('nav-links');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', function () {
+        var isOpen = navLinks.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      navLinks.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          navLinks.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) {
+          navLinks.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   });
 })();

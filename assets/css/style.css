@@ -76,21 +76,21 @@ main { flex: 1; }
 /* -------------------- Header / Nav -------------------- */
 
 .site-header {
-  background: var(--navy);
-  border-bottom: 1px solid var(--bronze);
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 1px 3px rgba(21, 36, 73, 0.06);
   position: relative;
-  z-index: 20;
+  z-index: 30;
 }
 
 .site-header__inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 16px 32px;
+  padding: 14px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  flex-wrap: wrap;
 }
 
 .brand {
@@ -110,7 +110,7 @@ main { flex: 1; }
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 19px;
-  color: var(--ivory);
+  color: var(--navy);
   letter-spacing: 0.2px;
 }
 
@@ -119,13 +119,13 @@ main { flex: 1; }
   font-size: 11px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--bronze-muted);
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 6px;
-  flex-wrap: wrap;
 }
 
 .nav-links__link {
@@ -135,22 +135,73 @@ main { flex: 1; }
   letter-spacing: 0.3px;
   padding: 10px 16px 8px;
   text-decoration: none;
-  color: var(--ivory);
+  color: var(--navy);
   background: transparent;
   border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .nav-links__link:hover {
-  color: var(--bronze);
-  border-bottom-color: rgba(222, 206, 146, 0.4);
+  color: var(--bronze-muted);
+  border-bottom-color: rgba(124, 106, 69, 0.35);
 }
 
 .nav-links__link--active,
 .nav-links__link--active:hover {
-  color: var(--bronze);
+  color: var(--bronze-muted);
   background: transparent;
-  border-bottom-color: var(--bronze);
+  border-bottom-color: var(--bronze-muted);
+}
+
+/* -------------------- Mobile nav toggle -------------------- */
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--navy);
+  cursor: pointer;
+  flex: none;
+}
+
+.nav-toggle svg { width: 24px; height: 24px; }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 16px 28px rgba(21, 36, 73, 0.1);
+    padding: 4px 32px 16px;
+  }
+
+  .nav-links.is-open { display: flex; }
+
+  .nav-links__link {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--card-border);
+    border-radius: 4px;
+  }
+
+  .nav-links__link--active,
+  .nav-links__link--active:hover {
+    background: var(--section-alt);
+    border-bottom-color: var(--card-border);
+  }
 }
 
 /* -------------------- Buttons -------------------- */
@@ -573,6 +624,13 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--navy); }
   .hero__title { font-size: 38px; }
   .hero__inner { max-width: 100%; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
+
+  /* Section-level layout is written with inline styles for pixel control,
+     which a normal media-query rule can never win against (inline always
+     outranks stylesheet rules unless !important). These targeted overrides
+     are the exception, scoped to just the horizontal gutter and the largest
+     vertical rhythms so phones/tablets don't inherit desktop spacing. */
+  main section[style] { padding-left: 24px !important; padding-right: 24px !important; }
 }
 
 @media (max-width: 560px) {
@@ -580,9 +638,20 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--navy); }
   .grid-5 { grid-template-columns: repeat(2, 1fr); }
   .grid-6 { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: 1fr; }
-  section { padding: 56px 20px; }
   .page-banner { padding: 48px 20px 40px; }
   .hero { padding: 64px 20px 72px; }
   .hero__title { font-size: 30px; }
   .site-footer__grid { grid-template-columns: 1fr; }
+
+  main section[style] { padding-left: 20px !important; padding-right: 20px !important; }
+  main section[style^="padding:88px 32px"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+  main section[style^="padding:80px 32px"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+  main section[style^="padding:72px 32px"] { padding-top: 40px !important; padding-bottom: 40px !important; }
+  main section[style^="padding:64px 32px"] { padding-top: 36px !important; padding-bottom: 36px !important; }
+  main section[style^="padding:56px 32px"] { padding-top: 32px !important; padding-bottom: 32px !important; }
+  main section[style^="padding:0 32px 88px"] { padding-bottom: 48px !important; }
+  main section[style^="padding:0 32px 56px"] { padding-bottom: 32px !important; }
+
+  .card { padding: 24px !important; }
+  .link-card { padding: 24px !important; }
 }
