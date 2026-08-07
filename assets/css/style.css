@@ -589,6 +589,97 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--navy); }
   color: var(--footer-copy);
 }
 
+/* -------------------- Pill links (quick jump nav) -------------------- */
+
+.pill-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pill-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  padding: 10px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.pill-link:hover {
+  color: var(--navy);
+  background: var(--section-alt);
+  border-color: var(--bronze);
+}
+
+/* -------------------- Pillar heading (grade guides, etc.) -------------------- */
+
+.pillar-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pillar-heading__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.pillar-heading__icon svg { width: 22px; height: 22px; }
+
+.pillar-heading h2 { margin: 0; font-size: 28px; }
+
+/* -------------------- Checklist -------------------- */
+
+.list-check {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.list-check li {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--text-dark);
+}
+
+.list-check li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bronze-muted);
+  margin-top: 8px;
+  flex: none;
+}
+
+.subhead {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 16px;
+}
+
 /* -------------------- Callout box -------------------- */
 
 .callout {

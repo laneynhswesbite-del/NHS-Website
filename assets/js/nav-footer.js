@@ -7,6 +7,7 @@
     { key: 'about', label: 'About', href: 'about.html' },
     { key: 'volunteer', label: 'Volunteer', href: 'volunteer.html' },
     { key: 'membership', label: 'Membership', href: 'membership.html' },
+    { key: 'before-membership', label: 'Before Membership', href: 'before-membership.html' },
     { key: 'meetings', label: 'Meetings', href: 'meetings.html' },
     { key: 'contact', label: 'Contact', href: 'contact.html' },
   ];
@@ -54,6 +55,7 @@
               '<a href="about.html">About</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
               '<a href="membership.html">Membership</a>' +
+              '<a href="before-membership.html">Before Membership</a>' +
               '<a href="meetings.html">Meetings</a>' +
               '<a href="contact.html">Contact</a>' +
             '</div>' +
