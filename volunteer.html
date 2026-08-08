@@ -94,22 +94,24 @@
         <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:16px 24px;background:var(--section-alt);border-bottom:1px solid var(--card-border)">
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Date</span>
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Event</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Slots Open</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Sign-Up</span>
         </div>
-        <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+        <div id="signup-rows">
+          <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
         </div>
       </div>
     </section>
@@ -125,5 +127,29 @@
 </div>
 
 <script src="assets/js/nav-footer.js"></script>
+<script src="assets/js/sheet-data.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    loadSheetTable({
+      csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNpNnLFLZSoZ_YtmmTRbRGtohVyoWqPnaGAe3cALVom2Zaj9JsuEXbczxZ1rN_BpcSo6jx3XqV4NBU/pub?gid=0&single=true&output=csv',
+      containerId: 'signup-rows',
+      renderRow: function (fields) {
+        var date = fields[0] || 'TBD';
+        var event = fields[1] || 'To be announced';
+        var link = fields[2] || '';
+        var linkCell = link
+          ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">Sign Up &rarr;</a>'
+          : '<span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>';
+        return (
+          '<div style="display:grid;grid-template-columns:1.2fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">' +
+            '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(date) + '</span>' +
+            '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(event) + '</span>' +
+            linkCell +
+          '</div>'
+        );
+      }
+    });
+  });
+</script>
 </body>
 </html>
