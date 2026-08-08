@@ -33,26 +33,32 @@
         <h2>Agendas &amp; Notes</h2>
       </div>
       <div class="card">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:16px 24px;background:var(--section-alt);border-bottom:1px solid var(--card-border)">
+        <div class="meeting-row meeting-row--head">
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Date</span>
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Slideshow</span>
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Agenda</span>
         </div>
         <div id="meeting-rows">
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+          <div class="meeting-row">
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <div class="meeting-row__links">
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+          <div class="meeting-row">
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <div class="meeting-row__links">
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px">
+          <div class="meeting-row" style="border-bottom:none">
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <div class="meeting-row__links">
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+              <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            </div>
           </div>
         </div>
       </div>
@@ -87,10 +93,9 @@
           ? '<a href="' + escapeHtml(agendaLink) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">View Agenda &rarr;</a>'
           : tbd;
         return (
-          '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">' +
+          '<div class="meeting-row">' +
             '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(date) + '</span>' +
-            slideshowCell +
-            agendaCell +
+            '<div class="meeting-row__links">' + slideshowCell + agendaCell + '</div>' +
           '</div>'
         );
       }

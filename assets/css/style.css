@@ -589,6 +589,38 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--navy); }
   color: var(--footer-copy);
 }
 
+/* -------------------- Sheet-backed data rows (meetings, etc.) -------------------- */
+
+.meeting-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #F0EEE8;
+}
+
+.meeting-row--head {
+  padding: 16px 24px;
+  background: var(--section-alt);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.meeting-row__links { display: contents; }
+
+@media (max-width: 560px) {
+  .meeting-row--head { display: none; }
+  .meeting-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px 20px;
+  }
+  .meeting-row__links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
 /* -------------------- Pill links (quick jump nav) -------------------- */
 
 .pill-links {
