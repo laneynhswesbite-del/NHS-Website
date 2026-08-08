@@ -6,14 +6,32 @@
     { key: 'home', label: 'Home', href: 'index.html' },
     { key: 'about', label: 'About', href: 'about.html' },
     { key: 'volunteer', label: 'Volunteer', href: 'volunteer.html' },
-    { key: 'membership', label: 'Membership', href: 'membership.html' },
-    { key: 'before-membership', label: 'Before Membership', href: 'before-membership.html' },
+    { label: 'Membership', children: [
+        { key: 'before-membership', label: 'Before Membership', href: 'before-membership.html' },
+        { key: 'membership', label: 'Current Membership', href: 'membership.html' },
+      ] },
     { key: 'meetings', label: 'Meetings', href: 'meetings.html' },
     { key: 'contact', label: 'Contact', href: 'contact.html' },
   ];
 
   function renderHeader(active) {
     var links = NAV_ITEMS.map(function (item) {
+      if (item.children) {
+        var childActive = item.children.some(function (c) { return c.key === active; });
+        var items = item.children.map(function (c) {
+          var itemCls = 'nav-dropdown__item' + (c.key === active ? ' nav-dropdown__item--active' : '');
+          return '<a class="' + itemCls + '" href="' + c.href + '">' + c.label + '</a>';
+        }).join('');
+        return (
+          '<div class="nav-dropdown">' +
+            '<span class="nav-links__link nav-dropdown__trigger' + (childActive ? ' nav-links__link--active' : '') + '" tabindex="0">' +
+              item.label +
+              '<svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+            '</span>' +
+            '<div class="nav-dropdown__panel">' + items + '</div>' +
+          '</div>'
+        );
+      }
       var cls = 'nav-links__link' + (item.key === active ? ' nav-links__link--active' : '');
       return '<a class="' + cls + '" href="' + item.href + '">' + item.label + '</a>';
     }).join('');
@@ -54,8 +72,8 @@
               '<a href="index.html">Home</a>' +
               '<a href="about.html">About</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
-              '<a href="membership.html">Membership</a>' +
               '<a href="before-membership.html">Before Membership</a>' +
+              '<a href="membership.html">Current Membership</a>' +
               '<a href="meetings.html">Meetings</a>' +
               '<a href="contact.html">Contact</a>' +
             '</div>' +
