@@ -4,7 +4,8 @@
 (function () {
   var NAV_ITEMS = [
     { key: 'home', label: 'Home', href: 'index.html' },
-    { key: 'about', label: 'About', href: 'about.html', children: [
+    { label: 'About', children: [
+        { key: 'about', label: 'About NHS', href: 'about.html' },
         { key: 'bylaws', label: 'By-Laws', href: 'bylaws.html' },
       ] },
     { key: 'volunteer', label: 'Volunteer', href: 'volunteer.html' },
@@ -79,7 +80,7 @@
             '<div class="site-footer__heading">Resources</div>' +
             '<div class="site-footer__links">' +
               '<a href="index.html">Home</a>' +
-              '<a href="about.html">About</a>' +
+              '<a href="about.html">About NHS</a>' +
               '<a href="bylaws.html">By-Laws</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
               '<a href="before-membership.html">Before Membership</a>' +
