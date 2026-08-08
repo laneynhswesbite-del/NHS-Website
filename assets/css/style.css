@@ -271,6 +271,21 @@ main { flex: 1; }
     border-bottom: none;
   }
 
+  .nav-dropdown__trigger--link {
+    padding: 14px 12px;
+    color: var(--navy);
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    border-bottom: 1px solid var(--card-border);
+    border-radius: 4px;
+  }
+
+  .nav-dropdown__trigger--link.nav-links__link--active {
+    background: var(--section-alt);
+    border-bottom-color: var(--card-border);
+  }
+
   .nav-dropdown__chevron { display: none; }
 
   .nav-dropdown__panel {

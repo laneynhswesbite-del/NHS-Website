@@ -4,7 +4,9 @@
 (function () {
   var NAV_ITEMS = [
     { key: 'home', label: 'Home', href: 'index.html' },
-    { key: 'about', label: 'About', href: 'about.html' },
+    { key: 'about', label: 'About', href: 'about.html', children: [
+        { key: 'bylaws', label: 'By-Laws', href: 'bylaws.html' },
+      ] },
     { key: 'volunteer', label: 'Volunteer', href: 'volunteer.html' },
     { label: 'Membership', children: [
         { key: 'before-membership', label: 'Before Membership', href: 'before-membership.html' },
@@ -17,17 +19,24 @@
   function renderHeader(active) {
     var links = NAV_ITEMS.map(function (item) {
       if (item.children) {
+        var selfActive = item.key === active;
         var childActive = item.children.some(function (c) { return c.key === active; });
+        var triggerActive = selfActive || childActive;
         var items = item.children.map(function (c) {
           var itemCls = 'nav-dropdown__item' + (c.key === active ? ' nav-dropdown__item--active' : '');
           return '<a class="' + itemCls + '" href="' + c.href + '">' + c.label + '</a>';
         }).join('');
+        var triggerCls = 'nav-links__link nav-dropdown__trigger' +
+          (item.href ? ' nav-dropdown__trigger--link' : '') +
+          (triggerActive ? ' nav-links__link--active' : '');
+        var triggerInner = item.label +
+          '<svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+        var trigger = item.href
+          ? '<a class="' + triggerCls + '" href="' + item.href + '">' + triggerInner + '</a>'
+          : '<span class="' + triggerCls + '" tabindex="0">' + triggerInner + '</span>';
         return (
           '<div class="nav-dropdown">' +
-            '<span class="nav-links__link nav-dropdown__trigger' + (childActive ? ' nav-links__link--active' : '') + '" tabindex="0">' +
-              item.label +
-              '<svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
-            '</span>' +
+            trigger +
             '<div class="nav-dropdown__panel">' + items + '</div>' +
           '</div>'
         );
@@ -71,6 +80,7 @@
             '<div class="site-footer__links">' +
               '<a href="index.html">Home</a>' +
               '<a href="about.html">About</a>' +
+              '<a href="bylaws.html">By-Laws</a>' +
               '<a href="volunteer.html">Volunteer</a>' +
               '<a href="before-membership.html">Before Membership</a>' +
               '<a href="membership.html">Current Membership</a>' +
