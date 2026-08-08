@@ -38,20 +38,22 @@
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Meeting</span>
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Agenda</span>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px">
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
-          <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+        <div id="meeting-rows">
+          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
         </div>
       </div>
     </section>
@@ -67,5 +69,29 @@
 </div>
 
 <script src="assets/js/nav-footer.js"></script>
+<script src="assets/js/sheet-data.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    loadSheetTable({
+      csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQeHEATkjn4P0EgFl6EG_KgW_-VE4ZNi3EXERPFmtvcga5XDZuM5jChWX7LbbZX_DaWI-0DlgHvmk9-/pub?gid=0&single=true&output=csv',
+      containerId: 'meeting-rows',
+      renderRow: function (fields) {
+        var date = fields[0] || 'TBD';
+        var meeting = fields[1] || 'To be announced';
+        var link = fields[2] || '';
+        var linkCell = link
+          ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">View Agenda &rarr;</a>'
+          : '<span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>';
+        return (
+          '<div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">' +
+            '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(date) + '</span>' +
+            '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(meeting) + '</span>' +
+            linkCell +
+          '</div>'
+        );
+      }
+    });
+  });
+</script>
 </body>
 </html>
