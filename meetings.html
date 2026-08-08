@@ -33,25 +33,25 @@
         <h2>Agendas &amp; Notes</h2>
       </div>
       <div class="card">
-        <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:16px 24px;background:var(--section-alt);border-bottom:1px solid var(--card-border)">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:16px 24px;background:var(--section-alt);border-bottom:1px solid var(--card-border)">
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Date</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Meeting</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Slideshow</span>
           <span style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--bronze-muted)">Agenda</span>
         </div>
         <div id="meeting-rows">
-          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
-            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">To be announced</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px">
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
+            <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
             <span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>
           </div>
         </div>
@@ -60,7 +60,7 @@
 
     <section class="section--alt" style="padding:56px 32px">
       <div style="max-width:820px;margin:0 auto;text-align:center">
-        <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0">Agendas are posted here as PDFs after each meeting. If you're looking for one that isn't listed yet, or a link isn't working, reach out to Ms. Jones or Ms. Woodbury.</p>
+        <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0">Slideshows and agendas are posted here after each meeting. If you're looking for one that isn't listed yet, or a link isn't working, reach out to Ms. Jones or Ms. Woodbury.</p>
       </div>
     </section>
   </main>
@@ -77,16 +77,20 @@
       containerId: 'meeting-rows',
       renderRow: function (fields) {
         var date = fields[0] || 'TBD';
-        var meeting = fields[1] || 'To be announced';
-        var link = fields[2] || '';
-        var linkCell = link
-          ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">View Agenda &rarr;</a>'
-          : '<span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>';
+        var slideshowLink = fields[1] || '';
+        var agendaLink = fields[2] || '';
+        var tbd = '<span style="font-size:14.5px;color:var(--text-faint);font-style:italic">TBD</span>';
+        var slideshowCell = slideshowLink
+          ? '<a href="' + escapeHtml(slideshowLink) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">View Slideshow &rarr;</a>'
+          : tbd;
+        var agendaCell = agendaLink
+          ? '<a href="' + escapeHtml(agendaLink) + '" target="_blank" rel="noopener noreferrer" style="font-size:14px;font-weight:600;color:var(--bronze-muted)">View Agenda &rarr;</a>'
+          : tbd;
         return (
-          '<div style="display:grid;grid-template-columns:1fr 2fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid #F0EEE8">' +
             '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(date) + '</span>' +
-            '<span style="font-size:14.5px;color:var(--text-dark)">' + escapeHtml(meeting) + '</span>' +
-            linkCell +
+            slideshowCell +
+            agendaCell +
           '</div>'
         );
       }
