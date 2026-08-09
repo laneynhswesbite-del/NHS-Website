@@ -18,27 +18,24 @@
   ];
 
   function renderHeader(active) {
-    var links = NAV_ITEMS.map(function (item) {
+    var links = NAV_ITEMS.map(function (item, i) {
       if (item.children) {
         var selfActive = item.key === active;
         var childActive = item.children.some(function (c) { return c.key === active; });
         var triggerActive = selfActive || childActive;
+        var panelId = 'nav-dropdown-panel-' + i;
         var items = item.children.map(function (c) {
           var itemCls = 'nav-dropdown__item' + (c.key === active ? ' nav-dropdown__item--active' : '');
           return '<a class="' + itemCls + '" href="' + c.href + '">' + c.label + '</a>';
         }).join('');
-        var triggerCls = 'nav-links__link nav-dropdown__trigger' +
-          (item.href ? ' nav-dropdown__trigger--link' : '') +
-          (triggerActive ? ' nav-links__link--active' : '');
+        var triggerCls = 'nav-links__link nav-dropdown__trigger' + (triggerActive ? ' nav-links__link--active' : '');
         var triggerInner = item.label +
           '<svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
-        var trigger = item.href
-          ? '<a class="' + triggerCls + '" href="' + item.href + '">' + triggerInner + '</a>'
-          : '<span class="' + triggerCls + '" tabindex="0">' + triggerInner + '</span>';
+        var trigger = '<button type="button" class="' + triggerCls + '" aria-expanded="false" aria-controls="' + panelId + '">' + triggerInner + '</button>';
         return (
           '<div class="nav-dropdown">' +
             trigger +
-            '<div class="nav-dropdown__panel">' + items + '</div>' +
+            '<div class="nav-dropdown__panel" id="' + panelId + '">' + items + '</div>' +
           '</div>'
         );
       }
@@ -118,21 +115,41 @@
 
     var toggle = document.getElementById('nav-toggle');
     var navLinks = document.getElementById('nav-links');
+    var dropdowns = navLinks ? navLinks.querySelectorAll('.nav-dropdown') : [];
+
+    function closeDropdowns() {
+      dropdowns.forEach(function (d) {
+        d.classList.remove('is-open');
+        var t = d.querySelector('.nav-dropdown__trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+
     if (toggle && navLinks) {
       toggle.addEventListener('click', function () {
         var isOpen = navLinks.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (!isOpen) closeDropdowns();
       });
       navLinks.addEventListener('click', function (e) {
+        var trigger = e.target.closest('.nav-dropdown__trigger');
+        if (trigger) {
+          var dropdown = trigger.closest('.nav-dropdown');
+          var isOpen = dropdown.classList.toggle('is-open');
+          trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          return;
+        }
         if (e.target.tagName === 'A') {
           navLinks.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
+          closeDropdowns();
         }
       });
       window.addEventListener('resize', function () {
         if (window.innerWidth > 900) {
           navLinks.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
+          closeDropdowns();
         }
       });
     }

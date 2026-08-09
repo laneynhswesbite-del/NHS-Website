@@ -161,7 +161,11 @@ main { flex: 1; }
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  cursor: default;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font: inherit;
 }
 
 .nav-dropdown__chevron {
@@ -171,7 +175,8 @@ main { flex: 1; }
 }
 
 .nav-dropdown:hover .nav-dropdown__chevron,
-.nav-dropdown:focus-within .nav-dropdown__chevron {
+.nav-dropdown:focus-within .nav-dropdown__chevron,
+.nav-dropdown.is-open .nav-dropdown__chevron {
   transform: rotate(180deg);
 }
 
@@ -190,7 +195,8 @@ main { flex: 1; }
 }
 
 .nav-dropdown:hover .nav-dropdown__panel,
-.nav-dropdown:focus-within .nav-dropdown__panel {
+.nav-dropdown:focus-within .nav-dropdown__panel,
+.nav-dropdown.is-open .nav-dropdown__panel {
   display: block;
 }
 
@@ -262,34 +268,18 @@ main { flex: 1; }
     border-bottom-color: var(--card-border);
   }
 
-  .nav-dropdown__trigger {
-    padding: 14px 12px 4px;
-    color: var(--bronze-muted);
-    font-size: 12px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border-bottom: none;
-  }
+  .nav-dropdown { width: 100%; }
 
-  .nav-dropdown__trigger--link {
+  .nav-dropdown__trigger {
+    width: 100%;
+    justify-content: space-between;
     padding: 14px 12px;
-    color: var(--navy);
-    font-size: 15px;
-    letter-spacing: 0.3px;
-    text-transform: none;
     border-bottom: 1px solid var(--card-border);
     border-radius: 4px;
   }
 
-  .nav-dropdown__trigger--link.nav-links__link--active {
-    background: var(--section-alt);
-    border-bottom-color: var(--card-border);
-  }
-
-  .nav-dropdown__chevron { display: none; }
-
   .nav-dropdown__panel {
-    display: block;
+    display: none;
     position: static;
     box-shadow: none;
     border: none;
@@ -721,6 +711,44 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--navy); }
     gap: 20px;
     flex-wrap: wrap;
   }
+}
+
+/* -------------------- Contact form -------------------- */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dark);
+  background: #FFFFFF;
+  transition: border-color 0.15s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--bronze-muted);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
 }
 
 /* -------------------- Pill links (quick jump nav) -------------------- */

@@ -76,11 +76,66 @@
 
       <img src="assets/images/contact-photo.jpg" alt="Laney NHS advisers at Senior Field Day" style="width:100%;height:360px;object-fit:cover;border-radius:8px">
     </section>
+
+    <!-- CONTACT FORM -->
+    <section style="padding:0 32px 88px;max-width:700px;margin:0 auto;width:100%;box-sizing:border-box">
+      <div class="card" style="padding:40px">
+        <h2 style="font-size:24px;margin:0 0 8px">Send a Message</h2>
+        <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0 0 28px">Have a question? Fill this out and it'll go straight to Ms. Jones.</p>
+
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:20px">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="position:absolute;left:-9999px">
+            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+          </p>
+
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input class="form-input" id="cf-name" name="name" type="text" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input class="form-input" id="cf-email" name="email" type="email" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--dark" style="align-self:flex-start">Send Message</button>
+        </form>
+
+        <div id="contact-form-success" style="display:none;text-align:center;padding:12px 0">
+          <p style="font-size:17px;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);margin:0 0 6px">Message sent!</p>
+          <p style="font-size:14.5px;color:var(--text-muted);margin:0">Thanks for reaching out &mdash; Ms. Jones will get back to you soon.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div id="site-footer"></div>
 </div>
 
 <script src="assets/js/nav-footer.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('contact-form');
+    var success = document.getElementById('contact-form-success');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      }).then(function () {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }).catch(function () {
+        alert('Something went wrong sending your message. Please email Ms. Jones directly at tonya.jones@nhcs.net.');
+      });
+    });
+  });
+</script>
 </body>
 </html>
