@@ -26,45 +26,12 @@
       </div>
     </section>
 
-    <!-- CONTACT FORM -->
-    <section style="padding:64px 32px 24px;max-width:820px;margin:0 auto;width:100%;box-sizing:border-box">
-      <div class="card" style="padding:44px">
-        <h2 style="font-size:26px;margin:0 0 8px">Send a Message</h2>
-        <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0 0 28px">Have a question? Fill this out and we'll get back to you.</p>
-
-        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:20px">
-          <input type="hidden" name="form-name" value="contact">
-          <p style="position:absolute;left:-9999px">
-            <label>Don't fill this out if you're human: <input name="bot-field"></label>
-          </p>
-
-          <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input class="form-input" id="cf-name" name="name" type="text" required>
-          </div>
-          <div class="form-field">
-            <label for="cf-email">Email</label>
-            <input class="form-input" id="cf-email" name="email" type="email" required>
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Message</label>
-            <textarea class="form-input" id="cf-message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--dark" style="align-self:flex-start">Send Message</button>
-        </form>
-
-        <div id="contact-form-success" style="display:none;text-align:center;padding:12px 0">
-          <p style="font-size:17px;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);margin:0 0 6px">Message sent!</p>
-          <p style="font-size:14.5px;color:var(--text-muted);margin:0">Thanks for reaching out &mdash; we'll get back to you soon.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid-2" style="padding:24px 32px 72px;max-width:1000px;margin:0 auto;width:100%;box-sizing:border-box;gap:56px;align-items:center">
+    <!-- ROW 1: GET IN TOUCH + FORM -->
+    <section class="grid-2" style="padding:64px 32px 24px;max-width:1100px;margin:0 auto;width:100%;box-sizing:border-box;gap:56px;align-items:start">
       <div>
         <h2 style="font-size:24px;margin:0 0 24px">Get in Touch</h2>
 
-        <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:36px">
+        <div style="display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;gap:16px;align-items:flex-start">
             <div style="width:38px;height:38px;flex:none;border-radius:50%;background:var(--section-alt);display:flex;align-items:center;justify-content:center;color:var(--navy)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
@@ -102,13 +69,52 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="card" style="padding:44px">
+        <h2 style="font-size:26px;margin:0 0 8px">Send a Message</h2>
+        <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0 0 28px">Have a question? Fill this out and we'll get back to you.</p>
+
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:20px">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="position:absolute;left:-9999px">
+            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+          </p>
+
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input class="form-input" id="cf-name" name="name" type="text" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input class="form-input" id="cf-email" name="email" type="email" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--dark" style="align-self:flex-start">Send Message</button>
+        </form>
+
+        <div id="contact-form-success" style="display:none;text-align:center;padding:12px 0">
+          <p style="font-size:17px;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);margin:0 0 6px">Message sent!</p>
+          <p style="font-size:14.5px;color:var(--text-muted);margin:0">Thanks for reaching out &mdash; we'll get back to you soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROW 2: PHOTO + NOTES -->
+    <section class="grid-2" style="padding:24px 32px 72px;max-width:1100px;margin:0 auto;width:100%;box-sizing:border-box;gap:56px;align-items:start">
+      <img src="assets/images/contact-photo.jpg" alt="Laney NHS advisers at Senior Field Day" style="width:100%;height:280px;object-fit:cover;border-radius:8px">
+
+      <div style="display:flex;flex-direction:column;gap:16px">
         <div class="callout" style="padding:18px 22px">
           <p style="font-size:14px"><strong>A note on scams:</strong> NHS never charges a fee to apply. If you receive an email asking you to pay in order to apply, it did not come from Laney NHS. Please report it to an adviser.</p>
         </div>
+        <div class="callout" style="padding:18px 22px">
+          <p style="font-size:14px"><strong>Response time:</strong> Please allow 1&ndash;2 school days for a reply. For anything time-sensitive, Google Chat usually gets a faster response than email.</p>
+        </div>
       </div>
-
-      <img src="assets/images/contact-photo.jpg" alt="Laney NHS advisers at Senior Field Day" style="width:100%;height:360px;object-fit:cover;border-radius:8px">
     </section>
   </main>
 
